@@ -16,13 +16,13 @@
 <meta property="og:site_name" content="Tianz的博客">
 <meta property="og:description" content="前言C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。 项目地址： C3D-keras">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_accuracy.png">
-<meta property="og:image" content="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_loss.png">
-<meta property="og:updated_time" content="2018-04-09T09:19:42.466Z">
+<meta property="og:image" content="/images/model_accuracy.png">
+<meta property="og:image" content="/images/model_loss.png">
+<meta property="og:updated_time" content="2018-04-09T09:29:16.249Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D">
 <meta name="twitter:description" content="前言C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。 项目地址： C3D-keras">
-<meta name="twitter:image" content="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_accuracy.png">
+<meta name="twitter:image" content="/images/model_accuracy.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -193,10 +193,10 @@ var _hmt = _hmt || [];
 <p>训练的epoch、学习率及学习率衰减（每4个epoch除以10）都跟原始论文保持一致，由于我只有一快GTX1080，batch_size只设置为16，太大了没法训练。</p>
 <h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>在训练16个epoch之后，验证集上clip的准确率为42.96%，比较接近原始论文中clip的准确率</p>
 <p>训练过程中训练集和验证集的准确率</p>
-<center><br>    <img src="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_accuracy.png" width="300" height="200" alt="train and val acc"><br></center>
+<center><br>    <img src="/images/model_accuracy.png" width="640" height="480" alt="train and val acc"><br></center>
 
 <p>训练过程中训练集和验证集上的损失值</p>
-<center><br>    <img src="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_loss.png" width="300" height="200" alt="train and val loss"><br></center>
+<center><br>    <img src="/images/model_loss.png" width="640" height="480" alt="train and val loss"><br></center>
 
 
 <p>最后，这只是我简单复现C3D的实验，代码中可能存在很多问题，如有问题欢迎在issue中提出。</p>
