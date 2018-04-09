@@ -179,15 +179,15 @@ var _hmt = _hmt || [];
     <div class="article-entry" itemprop="articleBody">
       
         <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。</p>
-<p>项目地址： <img src="https://github.com/TianzhongSong/C3D-keras" alt="C3D-keras"></p>
-<p>关于C3D的细节可以参考 <img src="https://wzmsltw.github.io/" alt="Will-Lin">的博客 <img src="https://blog.csdn.net/wzmsltw/article/details/61192243" alt="行为识别笔记：C3D network-用于视频特征提取的3维卷积网络
-"> 或者参看 <img src="https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Tran_Learning_Spatiotemporal_Features_ICCV_2015_paper.html" alt="C3D原始论文">。</p>
-<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>1、数据集：采用的是通用数据集 <img src="http://crcv.ucf.edu/data/UCF101.php" alt="UCF101">。</p>
+<p>项目地址： <a href="https://github.com/TianzhongSong/C3D-keras" target="_blank" rel="noopener">C3D-keras</a></p>
+<p>关于C3D的细节可以参考 <img src="https://wzmsltw.github.io/" alt="Will-Lin">的博客 <a href="https://blog.csdn.net/wzmsltw/article/details/61192243" target="_blank" rel="noopener">行为识别笔记：C3D network-用于视频特征提取的3维卷积网络
+</a> 或者参看 <a href="https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Tran_Learning_Spatiotemporal_Features_ICCV_2015_paper.html" target="_blank" rel="noopener">C3D原始论文</a>。</p>
+<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>1、数据集：采用的是通用数据集 <a href="http://crcv.ucf.edu/data/UCF101.php" target="_blank" rel="noopener">UCF101</a>。</p>
 <p>2、主要用到的库：Keras2.0.8、TensorFlow1.3.0、OpenCV3.2.0</p>
-<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>1、先将UCF101数据集中的所有视频转换为图片保存到本地（注意：需要大约150多G的存储空间），使用 <img src="https://github.com/TianzhongSong/C3D-keras/blob/master/video2img.py" alt="video2img.py"></p>
-<p>2、制作标签文档，跟 <img src="https://github.com/facebook/C3D" alt="C3D官方Caffe实现">一致，模型输入的视频段长度为16帧，训练集与验证集的分割与UCF101官方保持一致，每个类别的前7个人为测试样本，后面的8~25人为训练样本。</p>
-<h3 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h3><p>我这里使用的模型与论文中的模型并不一致，采用的是 <img src="https://github.com/facebook/C3D" alt="C3D官方Caffe实现"> 的最新结构，该模型共有5个3D卷积层，卷积核的数量依次为64、128、128、256、256，每一个3D卷积层后接一个3D最大池化层，除第一个池化层的pool_size为（2,2,1）外 其余池化层的pool_size均为（2,2,2），最后接三个全连接层，前两层全连接层的神经元个数均为2048，最后一层为101（类别输出）。权重衰减系数weight_decay设置为0.005。</p>
-<p>具体细节请看<img src="https://github.com/TianzhongSong/C3D-keras/blob/master/models.py" alt="models.py"></p>
+<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>1、先将UCF101数据集中的所有视频转换为图片保存到本地（注意：需要大约150多G的存储空间），使用 <a href="https://github.com/TianzhongSong/C3D-keras/blob/master/video2img.py" target="_blank" rel="noopener">video2img.py</a></p>
+<p>2、制作标签文档，跟 <a href="https://github.com/facebook/C3D" target="_blank" rel="noopener">C3D官方Caffe实现</a>一致，模型输入的视频段长度为16帧，训练集与验证集的分割与UCF101官方保持一致，每个类别的前7个人为测试样本，后面的8~25人为训练样本。</p>
+<h3 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h3><p>我这里使用的模型与论文中的模型并不一致，采用的是 <a href="https://github.com/facebook/C3D" target="_blank" rel="noopener">C3D官方Caffe实现</a> 的最新结构，该模型共有5个3D卷积层，卷积核的数量依次为64、128、128、256、256，每一个3D卷积层后接一个3D最大池化层，除第一个池化层的pool_size为（2,2,1）外 其余池化层的pool_size均为（2,2,2），最后接三个全连接层，前两层全连接层的神经元个数均为2048，最后一层为101（类别输出）。权重衰减系数weight_decay设置为0.005。</p>
+<p>具体细节请看<a href="https://github.com/TianzhongSong/C3D-keras/blob/master/models.py" target="_blank" rel="noopener">models.py</a></p>
 <h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>在训练过程中我们先将每一个视频段(clip)中的每一帧resize为128x171，并在每个clip上crop一个112x112x16的视频段作为模型输入。对于训练集，每个clip都做一个翻转，作为一个简单的数据扩充手段。验证集只进行中心裁剪。</p>
 <p>训练的epoch、学习率及学习率衰减（每4个epoch除以10）都跟原始论文保持一致，由于我只有一快GTX1080，batch_size只设置为16，太大了没法训练。</p>
 <h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>在训练16个epoch之后，验证集上clip的准确率为42.96%，比较接近原始论文中clip的准确率</p>
