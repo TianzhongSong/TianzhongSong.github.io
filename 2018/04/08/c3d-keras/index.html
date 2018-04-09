@@ -6,19 +6,32 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.tianzsong.xyz">
-  <title>Tianz的博客</title>
+  <title>用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D | Tianz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="Python爱好者，爬虫er，关注深度学习，目前主要从事图像处理及后端开发。此网站为个人博客，主要用于记录学习笔记，偶尔唠唠嗑。">
-<meta name="keywords" content="Python,爬虫,机器学习,人工智能,computer vision,行为识别,程序员,学习笔记,编程,开源">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Tianz的博客">
-<meta property="og:url" content="www.tianzsong.xyz/index.html">
+  <meta name="description" content="前言C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。 项目地址：  关于C3D的细节可以参考 的博客  或者参看 。 前期准备1、数据集：采用的是通用数据集 。 2、主要用到的库：Keras2.0.8、TensorFlow1.3.0、OpenCV3.2.0 数据处理1、先将UCF101数据集中的所有视频转换为图片保">
+<meta name="keywords" content="深度学习,3DCNN,行为识别,图像处理,Python,Keras">
+<meta property="og:type" content="article">
+<meta property="og:title" content="用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D">
+<meta property="og:url" content="www.tianzsong.xyz/2018/04/08/c3d-keras/index.html">
 <meta property="og:site_name" content="Tianz的博客">
-<meta property="og:description" content="Python爱好者，爬虫er，关注深度学习，目前主要从事图像处理及后端开发。此网站为个人博客，主要用于记录学习笔记，偶尔唠唠嗑。">
+<meta property="og:description" content="前言C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。 项目地址：  关于C3D的细节可以参考 的博客  或者参看 。 前期准备1、数据集：采用的是通用数据集 。 2、主要用到的库：Keras2.0.8、TensorFlow1.3.0、OpenCV3.2.0 数据处理1、先将UCF101数据集中的所有视频转换为图片保">
 <meta property="og:locale" content="zh-Hans">
+<meta property="og:image" content="https://github.com/TianzhongSong/C3D-keras">
+<meta property="og:image" content="https://wzmsltw.github.io/">
+<meta property="og:image" content="https://blog.csdn.net/wzmsltw/article/details/61192243">
+<meta property="og:image" content="https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Tran_Learning_Spatiotemporal_Features_ICCV_2015_paper.html">
+<meta property="og:image" content="http://crcv.ucf.edu/data/UCF101.php">
+<meta property="og:image" content="https://github.com/TianzhongSong/C3D-keras/blob/master/video2img.py">
+<meta property="og:image" content="https://github.com/facebook/C3D">
+<meta property="og:image" content="https://github.com/facebook/C3D">
+<meta property="og:image" content="https://github.com/TianzhongSong/C3D-keras/blob/master/models.py">
+<meta property="og:image" content="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_accuracy.png">
+<meta property="og:image" content="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_loss.png">
+<meta property="og:updated_time" content="2018-04-09T07:45:39.947Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="Tianz的博客">
-<meta name="twitter:description" content="Python爱好者，爬虫er，关注深度学习，目前主要从事图像处理及后端开发。此网站为个人博客，主要用于记录学习笔记，偶尔唠唠嗑。">
+<meta name="twitter:title" content="用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D">
+<meta name="twitter:description" content="前言C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。 项目地址：  关于C3D的细节可以参考 的博客  或者参看 。 前期准备1、数据集：采用的是通用数据集 。 2、主要用到的库：Keras2.0.8、TensorFlow1.3.0、OpenCV3.2.0 数据处理1、先将UCF101数据集中的所有视频转换为图片保">
+<meta name="twitter:image" content="https://github.com/TianzhongSong/C3D-keras">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,16 +169,14 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            
-  
-    <article id="post-c3d-keras" class="article article-type-post  article-index" itemscope itemprop="blogPost">
+            <article id="post-c3d-keras" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/08/c3d-keras/">用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D</a>
+    <h1 class="article-title" itemprop="name">
+      用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D
     </h1>
   
 
@@ -241,16 +252,75 @@ var _hmt = _hmt || [];
       
 
       
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/08/c3d-keras/">展开全文 >></a>
-        </p>
-      
 
+      
+        
+<div class="share-btn share-icons tooltip-left">
+  <div class="tooltip tooltip-east">
+    <span class="tooltip-item">
+      <a href="javascript:;" class="share-sns share-outer">
+        <i class="icon icon-share"></i>
+      </a>
+    </span>
+    <span class="tooltip-content">
+      <div class="share-wrap">
+        <div class="share-icons">
+          <a class="weibo share-sns" href="javascript:;" data-type="weibo">
+            <i class="icon icon-weibo"></i>
+          </a>
+          <a class="weixin share-sns wxFab" href="javascript:;" data-type="weixin">
+            <i class="icon icon-weixin"></i>
+          </a>
+          <a class="qq share-sns" href="javascript:;" data-type="qq">
+            <i class="icon icon-qq"></i>
+          </a>
+          <a class="douban share-sns" href="javascript:;" data-type="douban">
+            <i class="icon icon-douban"></i>
+          </a>
+          <a class="qzone share-sns" href="javascript:;" data-type="qzone">
+            <i class="icon icon-qzone"></i>
+          </a>
+          <a class="facebook share-sns" href="javascript:;" data-type="facebook">
+            <i class="icon icon-facebook"></i>
+          </a>
+          <a class="twitter share-sns" href="javascript:;" data-type="twitter">
+            <i class="icon icon-twitter"></i>
+          </a>
+          <a class="google share-sns" href="javascript:;" data-type="google">
+            <i class="icon icon-google"></i>
+          </a>
+        </div>
+      </div>
+    </span>
+  </div>
+</div>
+
+<div class="page-modal wx-share js-wx-box">
+    <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
+    <p>扫一扫，分享到微信</p>
+    <div class="wx-qrcode">
+      <img src="//pan.baidu.com/share/qrcode?url=http:www.tianzsong.xyz/2018/04/08/c3d-keras/" alt="微信分享二维码">
+    </div>
+</div>
+
+<div class="mask js-mask"></div>
       
       <div class="clearfix"></div>
     </div>
   </div>
 </article>
+
+  
+<nav id="article-nav">
+  
+  
+    <a href="/2018/04/07/first-blog/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">第一篇博客</div>
+      <i class="icon-circle-right"></i>
+    </a>
+  
+</nav>
+
 
 <aside class="wrap-side-operation">
     <div class="mod-side-operation">
@@ -270,82 +340,14 @@ var _hmt = _hmt || [];
 
 
 
-
   
-    <article id="post-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
-    
-      <header class="article-header">
-        
   
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/07/first-blog/">第一篇博客</a>
-    </h1>
   
 
-        
-        <a href="/2018/04/07/first-blog/" class="archive-article-date">
-  	<time datetime="2018-04-06T23:56:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="欢迎来到我的博客"><a href="#欢迎来到我的博客" class="headerlink" title="欢迎来到我的博客"></a>欢迎来到我的博客</h2><p>在这里我会记录一些学习笔记和趣事，偶尔也唠唠嗑。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/07/first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
+  
 
   
+
   
 
 
@@ -365,8 +367,8 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
-		isPost: false,
+		isHome: false,
+		isPost: true,
 		isArchive: false,
 		isTag: false,
 		isCategory: false,

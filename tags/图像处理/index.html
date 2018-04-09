@@ -6,13 +6,13 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.tianzsong.xyz">
-  <title>Tianz的博客</title>
+  <title>Tag: 图像处理 | Tianz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
   <meta name="description" content="Python爱好者，爬虫er，关注深度学习，目前主要从事图像处理及后端开发。此网站为个人博客，主要用于记录学习笔记，偶尔唠唠嗑。">
 <meta name="keywords" content="Python,爬虫,机器学习,人工智能,computer vision,行为识别,程序员,学习笔记,编程,开源">
 <meta property="og:type" content="website">
 <meta property="og:title" content="Tianz的博客">
-<meta property="og:url" content="www.tianzsong.xyz/index.html">
+<meta property="og:url" content="www.tianzsong.xyz/tags/图像处理/index.html">
 <meta property="og:site_name" content="Tianz的博客">
 <meta property="og:description" content="Python爱好者，爬虫er，关注深度学习，目前主要从事图像处理及后端开发。此网站为个人博客，主要用于记录学习笔记，偶尔唠唠嗑。">
 <meta property="og:locale" content="zh-Hans">
@@ -158,55 +158,34 @@ var _hmt = _hmt || [];
           <div id="js-content" class="content-ll">
             
   
-    <article id="post-c3d-keras" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
     
-      <header class="article-header">
-        
+    
+      
+      
+      <section class="archives-wrap">
+        <div class="archive-year-wrap">
+          <a href="/archives/2018" class="archive-year">2018</a>
+        </div>
+        <div class="archives">
+    
+    <article class="archive-article archive-type-post">
+  <div class="archive-article-inner">
+    <header class="archive-article-header">
+      	<div class="article-meta">
+	      	<a href="/2018/04/08/c3d-keras/" class="archive-article-date">
+  	<time datetime="2018-04-08T13:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
+</a>
+        </div>
+    	 
   
     <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/08/c3d-keras/">用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D</a>
+      <a class="archive-article-title" href="/2018/04/08/c3d-keras/">用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D</a>
     </h1>
   
 
-        
-        <a href="/2018/04/08/c3d-keras/" class="archive-article-date">
-  	<time datetime="2018-04-08T13:20:05.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-08</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h3 id="前言"><a href="#前言" class="headerlink" title="前言"></a>前言</h3><p>C3D使用3D CNN构造了一个效果不错的网络结构，对于基于视频的问题均可以用来提取特征。 我简单复现了论文中行为识别那部分的实验。</p>
-<p>项目地址： <img src="https://github.com/TianzhongSong/C3D-keras" alt="C3D-keras"></p>
-<p>关于C3D的细节可以参考 <img src="https://wzmsltw.github.io/" alt="Will-Lin">的博客 <img src="https://blog.csdn.net/wzmsltw/article/details/61192243" alt="行为识别笔记：C3D network-用于视频特征提取的3维卷积网络
-"> 或者参看 <img src="https://www.cv-foundation.org/openaccess/content_iccv_2015/html/Tran_Learning_Spatiotemporal_Features_ICCV_2015_paper.html" alt="C3D原始论文">。</p>
-<h3 id="前期准备"><a href="#前期准备" class="headerlink" title="前期准备"></a>前期准备</h3><p>1、数据集：采用的是通用数据集 <img src="http://crcv.ucf.edu/data/UCF101.php" alt="UCF101">。</p>
-<p>2、主要用到的库：Keras2.0.8、TensorFlow1.3.0、OpenCV3.2.0</p>
-<h3 id="数据处理"><a href="#数据处理" class="headerlink" title="数据处理"></a>数据处理</h3><p>1、先将UCF101数据集中的所有视频转换为图片保存到本地（注意：需要大约150多G的存储空间），使用 <img src="https://github.com/TianzhongSong/C3D-keras/blob/master/video2img.py" alt="video2img.py"></p>
-<p>2、制作标签文档，跟 <img src="https://github.com/facebook/C3D" alt="C3D官方Caffe实现">一致，模型输入的视频段长度为16帧，训练集与验证集的分割与UCF101官方保持一致，每个类别的前7个人为测试样本，后面的8~25人为训练样本。</p>
-<h3 id="模型定义"><a href="#模型定义" class="headerlink" title="模型定义"></a>模型定义</h3><p>我这里使用的模型与论文中的模型并不一致，采用的是 <img src="https://github.com/facebook/C3D" alt="C3D官方Caffe实现"> 的最新结构，该模型共有5个3D卷积层，卷积核的数量依次为64、128、128、256、256，每一个3D卷积层后接一个3D最大池化层，除第一个池化层的pool_size为（2,2,1）外 其余池化层的pool_size均为（2,2,2），最后接三个全连接层，前两层全连接层的神经元个数均为2048，最后一层为101（类别输出）。权重衰减系数weight_decay设置为0.005。</p>
-<p>具体细节请看<img src="https://github.com/TianzhongSong/C3D-keras/blob/master/models.py" alt="models.py"></p>
-<h3 id="训练"><a href="#训练" class="headerlink" title="训练"></a>训练</h3><p>在训练过程中我们先将每一个视频段(clip)中的每一帧resize为128x171，并在每个clip上crop一个112x112x16的视频段作为模型输入。对于训练集，每个clip都做一个翻转，作为一个简单的数据扩充手段。验证集只进行中心裁剪。</p>
-<p>训练的epoch、学习率及学习率衰减（每4个epoch除以10）都跟原始论文保持一致，由于我只有一快GTX1080，batch_size只设置为16，太大了没法训练。</p>
-<h3 id="结果"><a href="#结果" class="headerlink" title="结果"></a>结果</h3><p>在训练16个epoch之后，验证集上clip的准确率为42.96%，比较接近原始论文中clip的准确率</p>
-<p>训练过程中训练集和验证集的准确率</p>
-<center><br>    <img src="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_accuracy.png" width="300" height="200" alt="train and val acc"><br></center>
-
-<p>训练过程中训练集和验证集上的损失值</p>
-<center><br>    <img src="https://github.com/TianzhongSong/c3d-keras/blob/master/results/model_loss.png" width="300" height="200" alt="train and val loss"><br></center>
-
-
-<p>最后，这只是我简单复现C3D的实验，代码中可能存在很多问题，如有问题欢迎在issue中提出。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
+        <div class="article-info info-on-right">
+          
 	<div class="article-tag tagcloud">
 		<i class="icon-price-tags icon"></i>
 		<ul class="article-tag-list">
@@ -238,115 +217,19 @@ var _hmt = _hmt || [];
 		</ul>
 	</div>
 
-      
+          
 
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/08/c3d-keras/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
+        </div>
+        <div class="clearfix"></div>
+    </header>
   </div>
 </article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
   
-    <article id="post-first-blog" class="article article-type-post  article-index" itemscope itemprop="blogPost">
-  <div class="article-inner">
+  
+    </div></section>
+  
+
     
-      <header class="article-header">
-        
-  
-    <h1 itemprop="name">
-      <a class="article-title" href="/2018/04/07/first-blog/">第一篇博客</a>
-    </h1>
-  
-
-        
-        <a href="/2018/04/07/first-blog/" class="archive-article-date">
-  	<time datetime="2018-04-06T23:56:51.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-07</time>
-</a>
-        
-      </header>
-    
-    <div class="article-entry" itemprop="articleBody">
-      
-        <h2 id="欢迎来到我的博客"><a href="#欢迎来到我的博客" class="headerlink" title="欢迎来到我的博客"></a>欢迎来到我的博客</h2><p>在这里我会记录一些学习笔记和趣事，偶尔也唠唠嗑。</p>
-
-      
-
-      
-    </div>
-    <div class="article-info article-info-index">
-      
-      
-	<div class="article-tag tagcloud">
-		<i class="icon-price-tags icon"></i>
-		<ul class="article-tag-list">
-			 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color3">编程</a>
-        		</li>
-      		
-		</ul>
-	</div>
-
-      
-
-      
-        <p class="article-more-link">
-          <a class="article-more-a" href="/2018/04/07/first-blog/">展开全文 >></a>
-        </p>
-      
-
-      
-      <div class="clearfix"></div>
-    </div>
-  </div>
-</article>
-
-<aside class="wrap-side-operation">
-    <div class="mod-side-operation">
-        
-        <div class="jump-container" id="js-jump-container" style="display:none;">
-            <a href="javascript:void(0)" class="mod-side-operation__jump-to-top">
-                <i class="icon-font icon-back"></i>
-            </a>
-            <div id="js-jump-plan-container" class="jump-plan-container" style="top: -11px;">
-                <i class="icon-font icon-plane jump-plane"></i>
-            </div>
-        </div>
-        
-        
-    </div>
-</aside>
-
-
-
-
-  
-  
 
 
           </div>
@@ -365,10 +248,10 @@ var _hmt = _hmt || [];
     <script>
 	var yiliaConfig = {
 		mathjax: false,
-		isHome: true,
+		isHome: false,
 		isPost: false,
 		isArchive: false,
-		isTag: false,
+		isTag: true,
 		isCategory: false,
 		open_in_new: false,
 		toc_hide_index: true,
