@@ -6,23 +6,20 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.tianzsong.xyz">
-  <title>利用Pygame生成可用于训练CRNN的图片及标签 | Tianz的博客</title>
+  <title>文本图片数据生成器 | Tianz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="为什么要写这个脚本呢？因为这阵子在接触一个项目–需要对手机截图上的文字进行识别。文字的检测已经使用CTPN解决了，在使用CRNN进行识别时发现网上预训练好的CRNN模型对于数字和字母的识别效果还不是很好。所以萌生了自己微调模型的想法，提升字母及数字的识别精度，但问题是没有数据及标签。">
-<meta name="keywords" content="Python,Pygame,CRNN">
+  <meta name="description" content="前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 利用Pygame生成可用于训练CRNN的图片及标签，但这样生成的数据太过简单。">
+<meta name="keywords" content="文本识别, 图像处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="利用Pygame生成可用于训练CRNN的图片及标签">
-<meta property="og:url" content="www.tianzsong.xyz/2018/04/10/text2image/index.html">
+<meta property="og:title" content="文本图片数据生成器">
+<meta property="og:url" content="www.tianzsong.xyz/2018/05/03/TextRecognitionDataGenerator/index.html">
 <meta property="og:site_name" content="Tianz的博客">
-<meta property="og:description" content="为什么要写这个脚本呢？因为这阵子在接触一个项目–需要对手机截图上的文字进行识别。文字的检测已经使用CTPN解决了，在使用CRNN进行识别时发现网上预训练好的CRNN模型对于数字和字母的识别效果还不是很好。所以萌生了自己微调模型的想法，提升字母及数字的识别精度，但问题是没有数据及标签。">
+<meta property="og:description" content="前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 利用Pygame生成可用于训练CRNN的图片及标签，但这样生成的数据太过简单。">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="/images/demo.png">
-<meta property="og:image" content="/images/label.png">
-<meta property="og:updated_time" content="2018-04-10T06:43:26.496Z">
+<meta property="og:updated_time" content="2018-05-03T12:49:20.698Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="利用Pygame生成可用于训练CRNN的图片及标签">
-<meta name="twitter:description" content="为什么要写这个脚本呢？因为这阵子在接触一个项目–需要对手机截图上的文字进行识别。文字的检测已经使用CTPN解决了，在使用CRNN进行识别时发现网上预训练好的CRNN模型对于数字和字母的识别效果还不是很好。所以萌生了自己微调模型的想法，提升字母及数字的识别精度，但问题是没有数据及标签。">
-<meta name="twitter:image" content="/images/demo.png">
+<meta name="twitter:title" content="文本图片数据生成器">
+<meta name="twitter:description" content="前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 利用Pygame生成可用于训练CRNN的图片及标签，但这样生成的数据太过简单。">
   
   
     <link rel="icon" href="/favicon.png">
@@ -156,39 +153,33 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-text2image" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-TextRecognitionDataGenerator" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      利用Pygame生成可用于训练CRNN的图片及标签
+      文本图片数据生成器
     </h1>
   
 
         
-        <a href="/2018/04/10/text2image/" class="archive-article-date">
-  	<time datetime="2018-04-10T06:11:26.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-04-10</time>
+        <a href="/2018/05/03/TextRecognitionDataGenerator/" class="archive-article-date">
+  	<time datetime="2018-05-03T12:35:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>为什么要写这个脚本呢？因为这阵子在接触一个项目–需要对手机截图上的文字进行识别。文字的检测已经使用CTPN解决了，在使用CRNN进行识别时发现网上预训练好的CRNN模型对于数字和字母的识别效果还不是很好。所以萌生了自己微调模型的想法，提升字母及数字的识别精度，但问题是没有数据及标签。</p>
+        <p>前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 <a href="http://www.tianzsong.xyz/2018/04/10/text2image/">利用Pygame生成可用于训练CRNN的图片及标签</a>，但这样生成的数据太过简单。</p>
 <a id="more"></a>
-<p>在网上搜索了一番后欣喜的发现Pygame库可以将文本导出为图片形式（人生苦短，我用Python）。</p>
-<p>每一张图片中字符的个数随机为3~25个，每个字符随机从“0123456789-abcdefghijklmnopqrstuvwxyzABCDEFGHIJKLMNOPQRSTUVWXYZ” 中选出。</p>
-<p>使用的字符库来源于Synthetic Chinese String Dataset，该数据库下载链接可从 <a href="https://github.com/xiaomaxiao/keras_ocr" target="_blank" rel="noopener">keras-ocr</a>获得。</p>
-<p>生成的图片：</p>
-<center><br>    <img src="/images/demo.png" width="640" height="480" alt="result"><br></center>
-
-<p>生成的标签：</p>
-<center><br>    <img src="/images/label.png" width="640" height="480" alt="label"><br></center>
-
-<p>代码地址： <a href="https://github.com/TianzhongSong/text2image" target="_blank" rel="noopener">text2image</a></p>
-<p>后续会尝试生成汉字段（具有一定语义，而非汉字随机组合）。</p>
+<p>最近在GitHub上闲逛的时候发现了一些很不错的生成文本图片的项目。</p>
+<p>可用于生成英文的：<a href="https://github.com/Belval/TextRecognitionDataGenerator" target="_blank" rel="noopener">https://github.com/Belval/TextRecognitionDataGenerator</a></p>
+<p>可用于生成中文的：<a href="https://github.com/wang-tf/Chinese_OCR_synthetic_data" target="_blank" rel="noopener">https://github.com/wang-tf/Chinese_OCR_synthetic_data</a></p>
+<p>一个有趣的身份证图片生成工具：<a href="https://github.com/airob0t/idcardgenerator" target="_blank" rel="noopener">https://github.com/airob0t/idcardgenerator</a></p>
+<p>用于文本定位任务的合成数据：<a href="https://github.com/ankush-me/SynthText" target="_blank" rel="noopener">https://github.com/ankush-me/SynthText</a>, <a href="https://github.com/JarveeLee/SynthText_Chinese_version" target="_blank" rel="noopener">https://github.com/JarveeLee/SynthText_Chinese_version</a></p>
 
       
 
@@ -202,15 +193,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Python</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">Pygame</a>
-        		</li>
-      		 
-        		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color5">CRNN</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">文本识别, 图像处理</a>
         		</li>
       		
 		</ul>
@@ -266,7 +249,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:www.tianzsong.xyz/2018/04/10/text2image/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:www.tianzsong.xyz/2018/05/03/TextRecognitionDataGenerator/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -280,18 +263,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/04/11/unet-for-person-segmentation/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          利用Unet进行人体分割
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/08/c3d-keras/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">用Keras+OpenCV实现用于提取视频特征的3维卷积网络--C3D</div>
+    <a href="/2018/04/11/unet-for-person-segmentation/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">利用Unet进行人体分割</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -330,7 +304,7 @@ var _hmt = _hmt || [];
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "www.tianzsong.xyz/2018/04/10/text2image/",
+  id: "www.tianzsong.xyz/2018/05/03/TextRecognitionDataGenerator/",
   owner: 'TianzhongSong',
   repo: 'TianzhongSong.github.io',
   oauth: {
