@@ -6,20 +6,24 @@
   <meta name="renderer" content="webkit">
   <meta http-equiv="X-UA-Compatible" content="IE=edge" >
   <link rel="dns-prefetch" href="www.tianzsong.xyz">
-  <title>文本图片数据生成器 | Tianz的博客</title>
+  <title>行为识别数据库制作程序第二版 | Tianz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 利用Pygame生成可用于训练CRNN的图片及标签，但这样生成的数据太过简单。">
-<meta name="keywords" content="文本识别, 图像处理">
+  <meta name="description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版 run: ./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh  python run_cam.py 运行过程中，">
+<meta name="keywords" content="深度学习,行为识别,姿态估计,Python,图像处理">
 <meta property="og:type" content="article">
-<meta property="og:title" content="文本图片数据生成器">
-<meta property="og:url" content="www.tianzsong.xyz/2018/05/03/TextRecognitionDataGenerator/index.html">
+<meta property="og:title" content="行为识别数据库制作程序第二版">
+<meta property="og:url" content="www.tianzsong.xyz/2018/05/14/openpose/index.html">
 <meta property="og:site_name" content="Tianz的博客">
-<meta property="og:description" content="前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 利用Pygame生成可用于训练CRNN的图片及标签，但这样生成的数据太过简单。">
+<meta property="og:description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版 run: ./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh  python run_cam.py 运行过程中，">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:updated_time" content="2018-05-03T12:49:20.698Z">
+<meta property="og:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/joints.png">
+<meta property="og:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/1000.jpg">
+<meta property="og:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/imgs.png">
+<meta property="og:updated_time" content="2018-05-14T05:16:23.502Z">
 <meta name="twitter:card" content="summary">
-<meta name="twitter:title" content="文本图片数据生成器">
-<meta name="twitter:description" content="前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 利用Pygame生成可用于训练CRNN的图片及标签，但这样生成的数据太过简单。">
+<meta name="twitter:title" content="行为识别数据库制作程序第二版">
+<meta name="twitter:description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版 run: ./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh  python run_cam.py 运行过程中，">
+<meta name="twitter:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/joints.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -153,33 +157,39 @@ var _hmt = _hmt || [];
             <canvas data-colors="#eaeaea" data-sectionHeight="100" data-contentId="js-content" id="myCanvas1" class="anm-canvas"></canvas>
           </div>
           <div id="js-content" class="content-ll">
-            <article id="post-TextRecognitionDataGenerator" class="article article-type-post " itemscope itemprop="blogPost">
+            <article id="post-openpose" class="article article-type-post " itemscope itemprop="blogPost">
   <div class="article-inner">
     
       <header class="article-header">
         
   
     <h1 class="article-title" itemprop="name">
-      文本图片数据生成器
+      行为识别数据库制作程序第二版
     </h1>
   
 
         
-        <a href="/2018/05/03/TextRecognitionDataGenerator/" class="archive-article-date">
-  	<time datetime="2018-05-03T12:35:37.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-03</time>
+        <a href="/2018/05/14/openpose/" class="archive-article-date">
+  	<time datetime="2018-05-14T05:10:22.000Z" itemprop="datePublished"><i class="icon-calendar icon"></i>2018-05-14</time>
 </a>
         
       </header>
     
     <div class="article-entry" itemprop="articleBody">
       
-        <p>前段时间在做一个OCR的项目，当时由于训练样本不够充足，就想着自己生成一些数据来扩充训练样本（主要针对数字字母），当时使用Pygame简单生成了一些数据 <a href="http://www.tianzsong.xyz/2018/04/10/text2image/">利用Pygame生成可用于训练CRNN的图片及标签</a>，但这样生成的数据太过简单。</p>
-<a id="more"></a>
-<p>最近在GitHub上闲逛的时候发现了一些很不错的生成文本图片的项目。</p>
-<p>可用于生成英文的：<a href="https://github.com/Belval/TextRecognitionDataGenerator" target="_blank" rel="noopener">https://github.com/Belval/TextRecognitionDataGenerator</a></p>
-<p>可用于生成中文的：<a href="https://github.com/wang-tf/Chinese_OCR_synthetic_data" target="_blank" rel="noopener">https://github.com/wang-tf/Chinese_OCR_synthetic_data</a></p>
-<p>一个有趣的身份证图片生成工具：<a href="https://github.com/airob0t/idcardgenerator" target="_blank" rel="noopener">https://github.com/airob0t/idcardgenerator</a></p>
-<p>用于文本定位任务的合成数据：<a href="https://github.com/ankush-me/SynthText" target="_blank" rel="noopener">https://github.com/ankush-me/SynthText</a>, <a href="https://github.com/JarveeLee/SynthText_Chinese_version" target="_blank" rel="noopener">https://github.com/JarveeLee/SynthText_Chinese_version</a></p>
+        <p>之前使用目标检测做的<a href="https://zhuanlan.zhihu.com/p/33365628" target="_blank" rel="noopener">数据采集程序</a></p>
+<p>最近关注到openpose这个方法（真是个awesome的方法），现采用<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose" target="_blank" rel="noopener">openpose</a>获取人体关节点信息，并将骨骼图保存下来。我使用的是这个<a href="https://github.com/ildoonet/tf-pose-estimation" target="_blank" rel="noopener">openpose加速版</a></p>
+<p>run:</p>
+<pre><code>./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh
+
+python run_cam.py
+</code></pre><p>运行过程中， 按‘s’键保存信息，按‘q’键退出。</p>
+<p>保存的关节点信息：共有18个关节点信息，使用<a href="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/run_cam.py" target="_blank" rel="noopener">run_cam.py</a> 保存每一帧各个关节点的序号及其坐标，以及每一帧对应的骨骼图。</p>
+<p>结果如下：</p>
+<p><img src="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/joints.png" alt=""></p>
+<p><img src="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/1000.jpg" alt=""></p>
+<p><img src="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/imgs.png" alt=""></p>
+<p>我只是根据openpose提供的关节点信息写了这个脚本，具体细节或者想做更改请看代码：<a href="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition" target="_blank" rel="noopener">https://github.com/TianzhongSong/Dataset-maker-for-action-recognition</a></p>
 
       
 
@@ -193,7 +203,7 @@ var _hmt = _hmt || [];
 		<ul class="article-tag-list">
 			 
         		<li class="article-tag-list-item">
-        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color1">文本识别, 图像处理</a>
+        			<a href="javascript:void(0)" class="js-tag article-tag-list-link color2">深度学习,行为识别,姿态估计,Python,图像处理</a>
         		</li>
       		
 		</ul>
@@ -249,7 +259,7 @@ var _hmt = _hmt || [];
     <a class="close js-modal-close" href="javascript:;"><i class="icon icon-close"></i></a>
     <p>扫一扫，分享到微信</p>
     <div class="wx-qrcode">
-      <img src="//pan.baidu.com/share/qrcode?url=http:www.tianzsong.xyz/2018/05/03/TextRecognitionDataGenerator/" alt="微信分享二维码">
+      <img src="//pan.baidu.com/share/qrcode?url=http:www.tianzsong.xyz/2018/05/14/openpose/" alt="微信分享二维码">
     </div>
 </div>
 
@@ -263,18 +273,9 @@ var _hmt = _hmt || [];
   
 <nav id="article-nav">
   
-    <a href="/2018/05/14/openpose/" id="article-nav-newer" class="article-nav-link-wrap">
-      <i class="icon-circle-left"></i>
-      <div class="article-nav-title">
-        
-          行为识别数据库制作程序第二版
-        
-      </div>
-    </a>
   
-  
-    <a href="/2018/04/11/unet-for-person-segmentation/" id="article-nav-older" class="article-nav-link-wrap">
-      <div class="article-nav-title">利用Unet进行人体分割</div>
+    <a href="/2018/05/03/TextRecognitionDataGenerator/" id="article-nav-older" class="article-nav-link-wrap">
+      <div class="article-nav-title">文本图片数据生成器</div>
       <i class="icon-circle-right"></i>
     </a>
   
@@ -313,7 +314,7 @@ var _hmt = _hmt || [];
 <script src="//imsun.github.io/gitment/dist/gitment.browser.js"></script>
 <script>
 var gitment = new Gitment({
-  id: "www.tianzsong.xyz/2018/05/03/TextRecognitionDataGenerator/",
+  id: "www.tianzsong.xyz/2018/05/14/openpose/",
   owner: 'TianzhongSong',
   repo: 'TianzhongSong.github.io',
   oauth: {
