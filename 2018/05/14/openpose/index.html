@@ -8,22 +8,22 @@
   <link rel="dns-prefetch" href="www.tianzsong.xyz">
   <title>行为识别数据库制作程序第二版 | Tianz的博客</title>
   <meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1">
-  <meta name="description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版 run: ./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh  python run_cam.py 运行过程中，">
+  <meta name="description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版">
 <meta name="keywords" content="深度学习,行为识别,姿态估计,Python,图像处理">
 <meta property="og:type" content="article">
 <meta property="og:title" content="行为识别数据库制作程序第二版">
 <meta property="og:url" content="www.tianzsong.xyz/2018/05/14/openpose/index.html">
 <meta property="og:site_name" content="Tianz的博客">
-<meta property="og:description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版 run: ./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh  python run_cam.py 运行过程中，">
+<meta property="og:description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版">
 <meta property="og:locale" content="zh-Hans">
-<meta property="og:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/joints.png">
-<meta property="og:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/1000.jpg">
-<meta property="og:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/imgs.png">
-<meta property="og:updated_time" content="2018-05-14T05:16:23.502Z">
+<meta property="og:image" content="/images/data/joints.png">
+<meta property="og:image" content="/images/data/1000.jpg">
+<meta property="og:image" content="/images/data/imgs.png">
+<meta property="og:updated_time" content="2018-05-14T05:20:25.807Z">
 <meta name="twitter:card" content="summary">
 <meta name="twitter:title" content="行为识别数据库制作程序第二版">
-<meta name="twitter:description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版 run: ./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh  python run_cam.py 运行过程中，">
-<meta name="twitter:image" content="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/joints.png">
+<meta name="twitter:description" content="之前使用目标检测做的数据采集程序 最近关注到openpose这个方法（真是个awesome的方法），现采用openpose获取人体关节点信息，并将骨骼图保存下来。我使用的是这个openpose加速版">
+<meta name="twitter:image" content="/images/data/joints.png">
   
   
     <link rel="icon" href="/favicon.png">
@@ -179,6 +179,7 @@ var _hmt = _hmt || [];
       
         <p>之前使用目标检测做的<a href="https://zhuanlan.zhihu.com/p/33365628" target="_blank" rel="noopener">数据采集程序</a></p>
 <p>最近关注到openpose这个方法（真是个awesome的方法），现采用<a href="https://github.com/CMU-Perceptual-Computing-Lab/openpose" target="_blank" rel="noopener">openpose</a>获取人体关节点信息，并将骨骼图保存下来。我使用的是这个<a href="https://github.com/ildoonet/tf-pose-estimation" target="_blank" rel="noopener">openpose加速版</a></p>
+<a id="more"></a>
 <p>run:</p>
 <pre><code>./pose/models/pretrained/mobilenet_v1_0.75_224_2017_06_14/download.sh
 
@@ -186,9 +187,12 @@ python run_cam.py
 </code></pre><p>运行过程中， 按‘s’键保存信息，按‘q’键退出。</p>
 <p>保存的关节点信息：共有18个关节点信息，使用<a href="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/run_cam.py" target="_blank" rel="noopener">run_cam.py</a> 保存每一帧各个关节点的序号及其坐标，以及每一帧对应的骨骼图。</p>
 <p>结果如下：</p>
-<p><img src="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/joints.png" alt=""></p>
-<p><img src="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/1000.jpg" alt=""></p>
-<p><img src="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition/blob/master/imgs/imgs.png" alt=""></p>
+<center><br>    <img src="/images/data/joints.png" alt="joints results"><br></center>
+
+<center><br>    <img src="/images/data/1000.jpg" width="640" height="480" alt="sample"><br></center>
+
+<center><br>    <img src="/images/data/imgs.png" width="640" height="480" alt="samples"><br></center>
+
 <p>我只是根据openpose提供的关节点信息写了这个脚本，具体细节或者想做更改请看代码：<a href="https://github.com/TianzhongSong/Dataset-maker-for-action-recognition" target="_blank" rel="noopener">https://github.com/TianzhongSong/Dataset-maker-for-action-recognition</a></p>
 
       
@@ -409,10 +413,6 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
           <ul class="article-tag-list" q-show="showTags">
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color1">文本识别, 图像处理</a>
-              </li>
-             
-              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color3">编程</a>
               </li>
              
@@ -445,6 +445,14 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">图像分割</a>
+              </li>
+             
+              <li class="article-tag-list-item">
+                <a href="javascript:void(0)" class="js-tag color5">Unet</a>
+              </li>
+             
+              <li class="article-tag-list-item">
                 <a href="javascript:void(0)" class="js-tag color2">Pygame</a>
               </li>
              
@@ -453,11 +461,7 @@ return o(i(t),arguments.length<2?void 0:u(arguments[1]))}})},function(t,n,r){var
               </li>
              
               <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">图像分割</a>
-              </li>
-             
-              <li class="article-tag-list-item">
-                <a href="javascript:void(0)" class="js-tag color5">Unet</a>
+                <a href="javascript:void(0)" class="js-tag color1">文本识别, 图像处理</a>
               </li>
             
             <div class="clearfix"></div>
